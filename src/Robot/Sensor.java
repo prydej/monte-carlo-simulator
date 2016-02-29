@@ -14,6 +14,8 @@ public class Sensor {
 
 	public void finalize() throws Throwable {
 
+		int error;
+		
 	}
 
 	public int sense(){
