@@ -48,20 +48,21 @@ public class GUI extends Application {
 	//Displays info about the program 
 	private Text dataLog;
 
-	public void finalize() throws Throwable {
+	//public void finalize() throws Throwable {
 
-	}
+	//}
 
-	public String getMoveString() {
-		return moveString;
-	}
+	//public String getMoveString() {
+		//return moveString;
+	//}
 
-	public void setMoveString(String moveString) {
-		this.moveString = moveString;
-	}
+	//public void setMoveString(String moveString) {
+		//this.moveString = moveString;
+	//}
 
 	public GUI(){ 
 		//text stuff 
+		DataLog = new dataLog;
 		dataLog.setFont(new Font(18));
 		dataLog.relocate(100, 275); 
 		dataLog.setText(String.format("Please click the 'Help' button for clarification\n"));
