@@ -13,7 +13,7 @@ public class Map{
 	// seed random number generation
 	Random gen = new Random();
 
-	public int[][] refPoints;
+	public static int[][] refPoints;
 
 	// exception handling 
 	public void finalize() throws Throwable {}
