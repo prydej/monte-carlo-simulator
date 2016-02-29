@@ -5,7 +5,8 @@ import java.util.Arrays;
  * @author julian
  * credit to: Jason Samuel Koch
  * @version 1.0
- * @created 13-Feb-2016 1:56:50 PM
+ * @created 13-Feb-2016 13:56
+ * @modified 29-Feb-2016 16:25
  */
 public class Robot {
 
@@ -35,7 +36,12 @@ public class Robot {
 		return null;
 	}
 
-	public double[][] move(GUI gui, Map map){
+	public double[][] move(GUI gui, Map map, int[] start, int[] end){
+		
+		waypoints[0][0] = (double) start[0];
+		waypoints[0][1] = (double) start[1];
+		waypoints[1][0] = (double) end[0];
+		waypoints[1][1] = (double) end[1];
 
 		//find next position 1 unit away from last position
 		//	divide horz and vert component by distance between actual position and toWaypoint #UnitVector
@@ -76,7 +82,7 @@ public class Robot {
 			sensor.sense();
 
 			//call this.calculate()
-			position[chipmunk] = this.calculate(positionWError, map.refPoints);
+			position[chipmunk] = this.calculate(positionWError, Map.refPoints);
 			
 			//send info to GUI
 			outputString = "Ideal Positions: " + Arrays.toString(position[chipmunk]) + 

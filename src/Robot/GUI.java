@@ -38,7 +38,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 //GUI
-public class MCLGui extends Application{
+public class GUI extends Application{
 	//pane
 		private BorderPane MCLPane; 
 		GridPane grid = new GridPane();

@@ -21,24 +21,26 @@ public class Main {
 
 	public void main(){
 
-		int squirrel;
-
 		//Instantiate GUI
 		GUI gui = new GUI();
-		
+
+	}
+
+	public void simulate(int numRefPoints, int[] waypoint1, int[] waypoint2, double range,
+			double sensorError, double movementError, GUI gui, Map map){
 		//Instantiate IO
 		IO io = new IO();
 
 		//Instantiate robot
-		Robot robot = new Robot();
+		Robot robot = new Robot(gui, map, waypoint1, waypoint2);
 
 		//Instantiate map
 		Map map = new Map();
-
+		
+		int squirrel;
 		for (squirrel = 0; squirrel < robot.getNumWaypoints(); squirrel++){
 			robot.move(gui, map);
 		}
-
 	}
 
 }
