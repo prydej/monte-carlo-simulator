@@ -9,18 +9,18 @@ import java.util.Arrays;
  */
 public class Robot {
 
-	public Sensor m_Sensor;
+	public Sensor sensor;
 	public SensedMap m_SensedMap;
 	private double[] calcPosition, positionWError; //2 elements: 1st is x position, 2nd is y position
 	private double[][] waypoints, position;
 	private double movementError, distBetweenWaypoints, distFromLastWaypoint, 
-	error, xError, yError;
+			error, xError, yError;
 	private int fromWaypoint, toWaypoint, numWaypoints, chipmunk;
 	private int numMoves = 0;
 	private String outputString;
 
 	public Robot(){
-
+		sensor = new Sensor();
 	}
 	
 	public int getNumWaypoints(){
@@ -35,17 +35,19 @@ public class Robot {
 		return null;
 	}
 
-	public double[][] move(){
+	public double[][] move(GUI gui, Map map){
 
 		//find next position 1 unit away from last position
-		//	divide both horz and vert component by distance between actual position and toWaypoint #UnitVector
-		distBetweenWaypoints = Math.sqrt(Math.pow((waypoints[toWaypoint][0] - waypoints[fromWaypoint][0]),2) + 
+		//	divide horz and vert component by distance between actual position and toWaypoint #UnitVector
+		distBetweenWaypoints = Math.sqrt(Math.pow((waypoints[toWaypoint][0] - 
+				waypoints[fromWaypoint][0]),2) + 
 				Math.pow((waypoints[toWaypoint][1] - waypoints[fromWaypoint][1]),2));
 
 		//loop through all stops between waypoints
 		for (chipmunk = 0; chipmunk < distBetweenWaypoints; chipmunk++){
 			
-			double[] nextPosition = {(waypoints[toWaypoint][0] - position[chipmunk][0])/distBetweenWaypoints, 
+			double[] nextPosition = {(waypoints[toWaypoint][0] - position[chipmunk][0])/
+					distBetweenWaypoints, 
 					(waypoints[toWaypoint][1] - position[chipmunk][1])/distBetweenWaypoints};
 
 			//change position var to new position
@@ -56,7 +58,7 @@ public class Robot {
 			//add error
 			Random errorGen = new Random(); //create rng object
 
-			while (Math.pow(xError,2) + Math.pow(yError,2) > 4) { //make sure x and y are in sensible range
+			while (Math.pow(xError,2) + Math.pow(yError,2) > 4) { //make sure x, y are in sensible range
 				xError = errorGen.nextGaussian() * 2;
 				yError = errorGen.nextGaussian() * 2;
 			}
