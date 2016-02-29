@@ -9,6 +9,7 @@ package Robot;
 public class GUI {
 
 	public IO m_IO;
+	private String moveString;
 
 	public GUI(){
 
@@ -18,4 +19,11 @@ public class GUI {
 
 	}
 
+	public String getMoveString() {
+		return moveString;
+	}
+
+	public void setMoveString(String moveString) {
+		this.moveString = moveString;
+	}
 }

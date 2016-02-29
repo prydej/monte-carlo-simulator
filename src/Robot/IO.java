@@ -23,8 +23,9 @@ public class IO {
 	 * @param String
 	 * @param String2
 	 */
-	public saveFile(filename String, file String2){
+	public String log(String filename, String file){
 
+		String outputString;
 	}
 
 }

@@ -13,14 +13,32 @@ public class Main {
 	public Robot m_Robot;
 
 	public Main(){
-
 	}
 
 	public void finalize() throws Throwable {
 
 	}
 
-	public main(){
+	public void main(){
+
+		int squirrel;
+
+		//Instantiate GUI
+		GUI gui = new GUI();
+		
+		//Instantiate IO
+		IO io = new IO();
+
+		//Instantiate robot
+		Robot robot = new Robot();
+		Sensor sensor = new Sensor();
+
+		//Instantiate map
+		Map map = new Map();
+
+		for (squirrel = 0; squirrel < robot.getNumWaypoints(); squirrel++){
+			robot.move();
+		}
 
 	}
 
