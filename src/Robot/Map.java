@@ -19,7 +19,7 @@ public class Map{
 	public void finalize() throws Throwable {}
 
 	// create reference points as objects and add to array of objects 
-	public int createPoints(int NumberRefPoints){
+	public void createPoints(int NumberRefPoints){
 		// variables for loop iteration
 		int i, j;
 		
@@ -28,7 +28,6 @@ public class Map{
 				refPoints[i][j]= gen.nextInt(100);
 			}			
 		}
-		
 	}
 	
 
