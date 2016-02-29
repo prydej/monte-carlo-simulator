@@ -31,13 +31,12 @@ public class Main {
 
 		//Instantiate robot
 		Robot robot = new Robot();
-		Sensor sensor = new Sensor();
 
 		//Instantiate map
 		Map map = new Map();
 
 		for (squirrel = 0; squirrel < robot.getNumWaypoints(); squirrel++){
-			robot.move();
+			robot.move(gui, map);
 		}
 
 	}
