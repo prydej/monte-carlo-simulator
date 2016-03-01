@@ -93,7 +93,7 @@ public class Robot {
 		return position;
 	}
 
-	public double[] calculate(int position, int points){
+	public double[] calculate(double[] position, int[][] points){
 
 		calcPosition[0] = 0;
 		calcPosition[1] = 1;

@@ -1,4 +1,4 @@
-package src.Robot;
+package Robot;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -38,6 +38,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import java.lang.Integer;
+import java.lang.Double;
 
 //GUI
 public class GUI extends Application{
@@ -49,6 +51,7 @@ public class GUI extends Application{
 		private Menu menuFile, menuHelp;					// Menus
 		private MenuItem miSave, miClose;					// save/close
 		private MenuItem miAbout;					// Displays info about the program
+		private String moveString;
 		//the constructor
 		//public MCLGui(){
 			
@@ -60,48 +63,67 @@ public class GUI extends Application{
 		//}
 		
 		//invoke GUI
-		public static void main(String[] args){
-			launch(args);
+		public void showGUI(){
+			launch();
 		}
+		
+		//set moveString
+		public void setMoveString(String moveString){
+			this.moveString = moveString;
+		}
+		
 		@Override
 		public void start(Stage stage) throws Exception {
 			//make pane 
 			MCLPane = new BorderPane();
 			Pane buttonPane = new Pane();
+			
 			//create menu items
 			miSave = new MenuItem("Save");
 			miClose = new MenuItem("Close");
+			
 			//miStart = new MenuItem ("Start Simulation");
-			miAbout = new MenuItem("About");	
+			miAbout = new MenuItem("About");
+			
 			// Create Menus
 			menuFile = new Menu("File");
-			menuHelp = new Menu("Help");		
+			menuHelp = new Menu("Help");
+			
 			// Create MenuBar
 			menuBar = new MenuBar();	
+			
 			// Add menu items to respective menus
 			menuFile.getItems().addAll(miSave, miClose);
 			menuHelp.getItems().addAll(miAbout);
+			
 			// Add menus to menuBar
 			menuBar.getMenus().addAll(menuFile, menuHelp);
+			
 			//Event Handlers
 			miAbout.setOnAction(e -> showAbout());
 			miClose.setOnAction(e -> Platform.exit());
+			
 			/* PUT EVERYTHING TOGETHER */
 			Scene scene = new Scene(MCLPane, 950, 850);
 			StackPane root= new StackPane();
+			
 			// Add the menu bar and shapes to the border pane
 			MCLPane.setTop(menuBar);
 			MCLPane.setCenter(grid);
+			
 			// Configure and display the stage
 			stage.setScene(scene);
 			stage.setTitle("Monte Carlo Localization Simulator");
+			
 			//won't allow user to resize grid
 			stage.setResizable(false);
 			stage.show();
+			
 			//GridPane things
 			grid.setPadding(new Insets(20, 20, 20, 20));
 			grid.setVgap(5);
 			grid.setHgap(5);
+			
 			//Defining the text field
 			final TextField rangeText = new TextField();
 			rangeText.setPromptText("Enter a range");
@@ -144,12 +166,14 @@ public class GUI extends Application{
 			moveError.setPromptText("Enter movement error percentage");
 			GridPane.setConstraints(moveError, 2, 4);
 			grid.getChildren().add(moveError);
+			
 			//Defining text field
 			final TextField startPoint = new TextField();
 			startPoint.setPrefColumnCount(25);
 			startPoint.setPromptText("Enter starting location in the form of (x,y)");
 			GridPane.setConstraints(startPoint, 2, 5);
 			grid.getChildren().add(startPoint);
+			
 			//Defining text field
 			final TextField endPoint = new TextField();
 			endPoint.setPrefColumnCount(25);
@@ -162,11 +186,13 @@ public class GUI extends Application{
 			start.setStyle("-fx-font: 20 Comic Sans; -fx-base: #6b6a6b;"); //change button color
 			GridPane.setConstraints(start, 3, 0);
 			grid.getChildren().add(start);
+			
 			//Defining the Clear button
 			Button clear = new Button("Clear");
 			clear.setStyle("-fx-font: 20 Comic Sans; -fx-base:#ebebeb;"); //change button color
 			GridPane.setConstraints(clear, 3, 1);
 			grid.getChildren().add(clear);
+			
 			//Setting an action for the Clear button
 			clear.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -180,6 +206,27 @@ public class GUI extends Application{
 			        endPoint.clear();
 			    }
 			});
+			
+			//Set action for start simulation button
+			start.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent e){
+					//get text, take out parens, split by comma, convert each element part to int
+					int startx = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[0]);
+					int starty = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[1]);
+					int endx = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[0]);
+					int endy = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[1]);
+					
+					int[] startPos = {startx, starty};
+					int[] endPos = {endx, endy};
+					
+					Main.simulate(Integer.parseInt(refPoints.getText()), startPos, endPos, 
+							Double.parseDouble(rangeText.getText()), Double.parseDouble(senseError.getText()),
+							Double.parseDouble(moveError.getText()));
+				}
+				
+			});
+			
 		}
 		/** Shows information about the program in it's own window */
 		private void showAbout(){
