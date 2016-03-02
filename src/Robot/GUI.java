@@ -211,6 +211,7 @@ public class GUI extends Application{
 			start.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e){
+					
 					//get text, take out parens, split by comma, convert each element part to int
 					int startx = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[0]);
 					int starty = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[1]);
