@@ -1,13 +1,13 @@
+/**
+ * @author julian
+ * credit to: Jason Samuel Koch for gaussian rng.
+ * @version 1.0
+ */
+
 package Robot;
 import java.util.Random;
 import java.util.Arrays;
-/**
- * @author julian
- * credit to: Jason Samuel Koch
- * @version 1.0
- * @created 13-Feb-2016 13:56
- * @modified 29-Feb-2016 16:25
- */
+
 public class Robot {
 
 	public Sensor sensor;
@@ -36,7 +36,16 @@ public class Robot {
 		return null;
 	}
 
-	public double[][] move(GUI gui, Map map, int[] start, int[] end){
+	/**
+	 * move() moves the robot to its next position, calls sense and calculate.
+	 * 
+	 * @param gui class
+	 * @param map: class with reference points
+	 * @param start: starting position x and y
+	 * @param end: ending position x and y
+	 * @return double array of positions betwen waypoints after robot hits a waypoint
+	 */
+	public double[][] move(GUI gui, Map map, int[] start, int[] end, double range){
 		
 		waypoints[0][0] = (double) start[0];
 		waypoints[0][1] = (double) start[1];
@@ -79,7 +88,7 @@ public class Robot {
 			}
 
 			//call sensor.sense()
-			sensor.sense();
+			sensor.detectPoints(range, positionWError[chipmunk][0], positionWError[chipmunk][1]);
 
 			//call this.calculate()
 			position[chipmunk] = this.calculate(positionWError, Map.refPoints);
@@ -92,7 +101,13 @@ public class Robot {
 		}
 		return position;
 	}
-
+	
+	/**
+	 * 
+	 * @param position 
+	 * @param points
+	 * @return
+	 */
 	public double[] calculate(double[] position, int[][] points){
 
 		calcPosition[0] = 0;
