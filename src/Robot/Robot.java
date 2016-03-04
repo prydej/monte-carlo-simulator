@@ -45,7 +45,7 @@ public class Robot {
 	 * @param end: ending position x and y
 	 * @return double array of positions betwen waypoints after robot hits a waypoint
 	 */
-	public double[][] move(GUI gui, Map map, int[] start, int[] end){
+	public double[][] move(GUI gui, Map map, int[] start, int[] end, double range){
 		
 		waypoints[0][0] = (double) start[0];
 		waypoints[0][1] = (double) start[1];
@@ -88,7 +88,7 @@ public class Robot {
 			}
 
 			//call sensor.sense()
-			sensor.detectPoints();
+			sensor.detectPoints(range, positionWError[chipmunk][0], positionWError[chipmunk][1]);
 
 			//call this.calculate()
 			position[chipmunk] = this.calculate(positionWError, Map.refPoints);

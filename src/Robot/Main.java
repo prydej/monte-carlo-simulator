@@ -1,16 +1,18 @@
 package Robot;
-import javafx.stage.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
+//import javafx.stage.*;
 
 /**
  * @author julian
  * @version 1.0
  * @created 13-Feb-2016 1:56:50 PM
  */
-public class Main {
+public class Main extends Application{
 
 	public Map m_Map;
-	public static GUI gui;
 	public Robot m_Robot;
+	public static GUI gui;
 
 	public Main(){
 		
@@ -20,10 +22,14 @@ public class Main {
 
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		
-		gui.showGUI();
+		launch(args);
 
+	}
+	
+	public void start(Stage primaryStage) throws Exception{
+		
 	}
 
 	public static void simulate(int numRefPoints, int[] waypoint1, int[] waypoint2, double range,
@@ -37,7 +43,7 @@ public class Main {
 		
 		int squirrel;
 		for (squirrel = 0; squirrel < robot.getNumWaypoints(); squirrel++){
-			robot.move(gui, map, waypoint1, waypoint2);
+			robot.move(gui, map, waypoint1, waypoint2, range);
 		}
 		
 		
