@@ -78,6 +78,91 @@ public class GUI extends Application{
 		
 		// Add menus to menuBar
 		menuBar.getMenus().addAll(menuFile, menuHelp);
+		
+		//Defining the text field
+		final TextField rangeText = new TextField();
+		rangeText.setPromptText("Enter a range");
+		rangeText.setPrefColumnCount(20);
+		rangeText.getText();
+		GridPane.setConstraints(rangeText, 2, 0);
+		
+		//Defining  text field
+		final TextField refPoints = new TextField();
+		refPoints.setPromptText("Enter a number of reference points");
+		GridPane.setConstraints(refPoints, 2, 1);
+		
+		//Defining text field
+		final TextField senseError = new TextField();
+		senseError.setPrefColumnCount(25);
+		senseError.setPromptText("Enter sensor error percentage");
+		GridPane.setConstraints(senseError, 2, 2);
+		//Defining text field
+		final TextField waypoints = new TextField();
+		waypoints.setPrefColumnCount(25);
+		waypoints.setPromptText("Enter amount of waypoints");
+		GridPane.setConstraints(waypoints, 2, 3);
+		//Defining text field
+		final TextField moveError = new TextField();
+		moveError.setPrefColumnCount(25);
+		moveError.setPromptText("Enter movement error percentage");
+		GridPane.setConstraints(moveError, 2, 4);
+		
+		//Defining text field
+		final TextField startPoint = new TextField();
+		startPoint.setPrefColumnCount(25);
+		startPoint.setPromptText("Enter starting location in the form of (x,y)");
+		GridPane.setConstraints(startPoint, 2, 5);
+		
+		//Defining text field
+		final TextField endPoint = new TextField();
+		endPoint.setPrefColumnCount(25);
+		endPoint.setPromptText("Enter end location in the form of (x,y)");
+		GridPane.setConstraints(endPoint, 2, 6);
+		
+		//Defining the start sim button
+		Button start = new Button("Start Simulation");
+		start.setStyle("-fx-font: 20 Comic Sans; -fx-base: #6b6a6b;"); //change button color
+		GridPane.setConstraints(start, 3, 0);
+		
+		//Defining the Clear button
+		Button clear = new Button("Clear");
+		clear.setStyle("-fx-font: 20 Comic Sans; -fx-base:#ebebeb;"); //change button color
+		GridPane.setConstraints(clear, 3, 1);
+		grid.getChildren().addAll(clear, start, endPoint, startPoint, moveError, rangeText, refPoints, senseError, waypoints);
+		//Setting an action for the Clear button
+		clear.setOnAction(new EventHandler<ActionEvent>() {
+		@Override
+		    public void handle(ActionEvent e) {
+		        rangeText.clear();
+		        refPoints.clear();
+		        senseError.clear();
+		        waypoints.clear();
+		        moveError.clear();
+		        startPoint.clear();
+		        endPoint.clear();
+		    }
+		});
+		
+		//Set action for start simulation button
+		start.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e){
+				
+				//get text, take out parens, split by comma, convert each element part to int
+				int startx = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[0]);
+				int starty = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[1]);
+				int endx = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[0]);
+				int endy = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[1]);
+				
+				int[] startPos = {startx, starty};
+				int[] endPos = {endx, endy};
+				
+				Main.simulate(Integer.parseInt(refPoints.getText()), startPos, endPos, 
+						Double.parseDouble(rangeText.getText()), Double.parseDouble(senseError.getText()),
+						Double.parseDouble(moveError.getText()));
+			}
+			
+		});
 			
 		}
 		
@@ -118,91 +203,6 @@ public class GUI extends Application{
 			grid.setPadding(new Insets(20, 20, 20, 20));
 			grid.setVgap(5);
 			grid.setHgap(5);
-			
-			//Defining the text field
-			final TextField rangeText = new TextField();
-			rangeText.setPromptText("Enter a range");
-			rangeText.setPrefColumnCount(20);
-			rangeText.getText();
-			GridPane.setConstraints(rangeText, 2, 0);
-			
-			//Defining  text field
-			final TextField refPoints = new TextField();
-			refPoints.setPromptText("Enter a number of reference points");
-			GridPane.setConstraints(refPoints, 2, 1);
-			
-			//Defining text field
-			final TextField senseError = new TextField();
-			senseError.setPrefColumnCount(25);
-			senseError.setPromptText("Enter sensor error percentage");
-			GridPane.setConstraints(senseError, 2, 2);
-			//Defining text field
-			final TextField waypoints = new TextField();
-			waypoints.setPrefColumnCount(25);
-			waypoints.setPromptText("Enter amount of waypoints");
-			GridPane.setConstraints(waypoints, 2, 3);
-			//Defining text field
-			final TextField moveError = new TextField();
-			moveError.setPrefColumnCount(25);
-			moveError.setPromptText("Enter movement error percentage");
-			GridPane.setConstraints(moveError, 2, 4);
-			
-			//Defining text field
-			final TextField startPoint = new TextField();
-			startPoint.setPrefColumnCount(25);
-			startPoint.setPromptText("Enter starting location in the form of (x,y)");
-			GridPane.setConstraints(startPoint, 2, 5);
-			
-			//Defining text field
-			final TextField endPoint = new TextField();
-			endPoint.setPrefColumnCount(25);
-			endPoint.setPromptText("Enter end location in the form of (x,y)");
-			GridPane.setConstraints(endPoint, 2, 6);
-			
-			//Defining the start sim button
-			Button start = new Button("Start Simulation");
-			start.setStyle("-fx-font: 20 Comic Sans; -fx-base: #6b6a6b;"); //change button color
-			GridPane.setConstraints(start, 3, 0);
-			
-			//Defining the Clear button
-			Button clear = new Button("Clear");
-			clear.setStyle("-fx-font: 20 Comic Sans; -fx-base:#ebebeb;"); //change button color
-			GridPane.setConstraints(clear, 3, 1);
-			grid.getChildren().addAll(clear, start, endPoint, startPoint, moveError, rangeText, refPoints, senseError, waypoints);
-			//Setting an action for the Clear button
-			clear.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			    public void handle(ActionEvent e) {
-			        rangeText.clear();
-			        refPoints.clear();
-			        senseError.clear();
-			        waypoints.clear();
-			        moveError.clear();
-			        startPoint.clear();
-			        endPoint.clear();
-			    }
-			});
-			
-			//Set action for start simulation button
-			start.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent e){
-					
-					//get text, take out parens, split by comma, convert each element part to int
-					int startx = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[0]);
-					int starty = Integer.parseInt(startPoint.getText().replaceAll("[()]","").split(",")[1]);
-					int endx = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[0]);
-					int endy = Integer.parseInt(endPoint.getText().replaceAll("[()]","").split(",")[1]);
-					
-					int[] startPos = {startx, starty};
-					int[] endPos = {endx, endy};
-					
-					Main.simulate(Integer.parseInt(refPoints.getText()), startPos, endPos, 
-							Double.parseDouble(rangeText.getText()), Double.parseDouble(senseError.getText()),
-							Double.parseDouble(moveError.getText()));
-				}
-				
-			});
 			
 		}
 		/** Shows information about the program in it's own window */
