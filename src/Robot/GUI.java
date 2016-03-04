@@ -53,14 +53,33 @@ public class GUI extends Application{
 		private MenuItem miAbout;					// Displays info about the program
 		private String moveString;
 		//the constructor
-		//public MCLGui(){
+		public GUI(){
+		//make pane 
+		MCLPane = new BorderPane();
+		Pane buttonPane = new Pane();
+		
+		//create menu items
+		miSave = new MenuItem("Save");
+		miClose = new MenuItem("Close");
+		
+		//miStart = new MenuItem ("Start Simulation");
+		miAbout = new MenuItem("About");
+		
+		// Create Menus
+		menuFile = new Menu("File");
+		menuHelp = new Menu("Help");
+		
+		// Create MenuBar
+		menuBar = new MenuBar();	
+		
+		// Add menu items to respective menus
+		menuFile.getItems().addAll(miSave, miClose);
+		menuHelp.getItems().addAll(miAbout);
+		
+		// Add menus to menuBar
+		menuBar.getMenus().addAll(menuFile, menuHelp);
 			
-			
-			//text stuff
-//			DataLog.setFont(new Font(18));	
-//			DataLog.relocate(100, 275);
-//			MCLGui.DataLog.setText(String.format("Please click the 'Help' button for clarification\n"));	
-		//}
+		}
 		
 		//invoke GUI
 		public void showGUI(){
@@ -74,30 +93,6 @@ public class GUI extends Application{
 		
 		@Override
 		public void start(Stage stage) throws Exception {
-			//make pane 
-			MCLPane = new BorderPane();
-			Pane buttonPane = new Pane();
-			
-			//create menu items
-			miSave = new MenuItem("Save");
-			miClose = new MenuItem("Close");
-			
-			//miStart = new MenuItem ("Start Simulation");
-			miAbout = new MenuItem("About");
-			
-			// Create Menus
-			menuFile = new Menu("File");
-			menuHelp = new Menu("Help");
-			
-			// Create MenuBar
-			menuBar = new MenuBar();	
-			
-			// Add menu items to respective menus
-			menuFile.getItems().addAll(miSave, miClose);
-			menuHelp.getItems().addAll(miAbout);
-			
-			// Add menus to menuBar
-			menuBar.getMenus().addAll(menuFile, menuHelp);
 			
 			//Event Handlers
 			miAbout.setOnAction(e -> showAbout());
@@ -130,57 +125,50 @@ public class GUI extends Application{
 			rangeText.setPrefColumnCount(20);
 			rangeText.getText();
 			GridPane.setConstraints(rangeText, 2, 0);
-			grid.getChildren().add(rangeText);
+			
 			//Defining  text field
 			final TextField refPoints = new TextField();
 			refPoints.setPromptText("Enter a number of reference points");
 			GridPane.setConstraints(refPoints, 2, 1);
-			grid.getChildren().add(refPoints);
+			
 			//Defining text field
 			final TextField senseError = new TextField();
 			senseError.setPrefColumnCount(25);
 			senseError.setPromptText("Enter sensor error percentage");
 			GridPane.setConstraints(senseError, 2, 2);
-			grid.getChildren().add(senseError);
 			//Defining text field
 			final TextField waypoints = new TextField();
 			waypoints.setPrefColumnCount(25);
 			waypoints.setPromptText("Enter amount of waypoints");
 			GridPane.setConstraints(waypoints, 2, 3);
-			grid.getChildren().add(waypoints);
 			//Defining text field
 			final TextField moveError = new TextField();
 			moveError.setPrefColumnCount(25);
 			moveError.setPromptText("Enter movement error percentage");
 			GridPane.setConstraints(moveError, 2, 4);
-			grid.getChildren().add(moveError);
 			
 			//Defining text field
 			final TextField startPoint = new TextField();
 			startPoint.setPrefColumnCount(25);
 			startPoint.setPromptText("Enter starting location in the form of (x,y)");
 			GridPane.setConstraints(startPoint, 2, 5);
-			grid.getChildren().add(startPoint);
 			
 			//Defining text field
 			final TextField endPoint = new TextField();
 			endPoint.setPrefColumnCount(25);
 			endPoint.setPromptText("Enter end location in the form of (x,y)");
 			GridPane.setConstraints(endPoint, 2, 6);
-			grid.getChildren().add(endPoint);
 			
 			//Defining the start sim button
 			Button start = new Button("Start Simulation");
 			start.setStyle("-fx-font: 20 Comic Sans; -fx-base: #6b6a6b;"); //change button color
 			GridPane.setConstraints(start, 3, 0);
-			grid.getChildren().add(start);
 			
 			//Defining the Clear button
 			Button clear = new Button("Clear");
 			clear.setStyle("-fx-font: 20 Comic Sans; -fx-base:#ebebeb;"); //change button color
 			GridPane.setConstraints(clear, 3, 1);
-			grid.getChildren().add(clear);
-			
+			grid.getChildren().addAll(clear, start, endPoint, startPoint, moveError, rangeText, refPoints, senseError, waypoints);
 			//Setting an action for the Clear button
 			clear.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
