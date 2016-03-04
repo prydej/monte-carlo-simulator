@@ -1,4 +1,4 @@
-package Robot;
+package src.Robot;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -131,35 +131,23 @@ public class GUI extends Application{
 			rangeText.getText();
 			GridPane.setConstraints(rangeText, 2, 0);
 			grid.getChildren().add(rangeText);
-			
-			int range;
-			//takes whats in the text field and sets it equal to variable so it can be passed elsewhere
-			//range = Integer.parseInt(rangeText.getText());
 			//Defining  text field
 			final TextField refPoints = new TextField();
 			refPoints.setPromptText("Enter a number of reference points");
 			GridPane.setConstraints(refPoints, 2, 1);
 			grid.getChildren().add(refPoints);
-			
-			int reference;
-			//reference = Integer.parseInt(refPoints.getText());
 			//Defining text field
 			final TextField senseError = new TextField();
 			senseError.setPrefColumnCount(25);
 			senseError.setPromptText("Enter sensor error percentage");
 			GridPane.setConstraints(senseError, 2, 2);
 			grid.getChildren().add(senseError);
-			
-			double sensor;
-			//sensor = Double.parseDouble(senseError.getText());
 			//Defining text field
 			final TextField waypoints = new TextField();
 			waypoints.setPrefColumnCount(25);
 			waypoints.setPromptText("Enter amount of waypoints");
 			GridPane.setConstraints(waypoints, 2, 3);
 			grid.getChildren().add(waypoints);
-			
-			double amtWaypoint;
 			//Defining text field
 			final TextField moveError = new TextField();
 			moveError.setPrefColumnCount(25);
