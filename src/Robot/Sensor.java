@@ -12,10 +12,10 @@ public class Sensor {
 	public Sensor(){
 	}
 
-	public void finalize() throws Throwable {
+	public void finalize() throws Throwable{
 	}
 
-	public void detectPoints(int rangeOfSensor, int robotX, int robotY ){
+	public void detectPoints(double rangeOfSensor, double robotX, double robotY ){
 
 		int i = 0;
 
@@ -23,9 +23,9 @@ public class Sensor {
 
 		int[][] refPointLoc = Map.refPoints;
 
-		int rangeSensorX = rangeOfSensor + robotX;
+		double rangeSensorX = rangeOfSensor + robotX;
 
-		int rangeSensorY = rangeOfSensor + robotY;
+		double rangeSensorY = rangeOfSensor + robotY;
 
 		int pointDetectedX = -1;
 
@@ -127,9 +127,11 @@ public class Sensor {
 			
 			Scanner readErrorFile = new Scanner(getErrorPoints);
 			
-			
-			
-		}catch(IOException iOEx3){
+			bWDistance.close();
+
+			readErrorFile.close();
+		}
+		catch(IOException iOEx3){
 		
 			//error message with scene and pane to pop up
 		}
