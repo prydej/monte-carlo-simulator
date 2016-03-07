@@ -1,6 +1,5 @@
 package Robot;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -13,12 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-//import javafx.scene.SnapshotParameters;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -40,9 +33,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.lang.Integer;
 import java.lang.Double;
-/**@author Savanh Lu
- *  */
-//GUI
+
+/** The GUI
+ * @author Savanh
+ *
+ */
 public class GUI extends Application{
 	//pane
 		private BorderPane MCLPane; 
@@ -51,9 +46,12 @@ public class GUI extends Application{
 		private MenuBar menuBar;							// MenuBar
 		private Menu menuFile, menuHelp;					// Menus
 		private MenuItem miSave, miClose;					// save/close
-		private MenuItem miAbout;					// Displays info about the program
+		private MenuItem miAbout;							// Displays info about the program
 		private String moveString;
-		//the constructor
+		
+		/** @author Savanh Lu
+		 * this is a constructor
+		 */
 		public GUI(){
 		//make pane 
 		MCLPane = new BorderPane();
@@ -61,21 +59,16 @@ public class GUI extends Application{
 		//create menu items
 		miSave = new MenuItem("Save");
 		miClose = new MenuItem("Close");
-		//miStart = new MenuItem ("Start Simulation");
 		miAbout = new MenuItem("About");
 		
-		// Create Menus
+		// Create Menus and MenuBar
 		menuFile = new Menu("File");
 		menuHelp = new Menu("Help");
-		
-		// Create MenuBar
 		menuBar = new MenuBar();	
 		
-		// Add menu items to respective menus
+		// Add menu items to respective menus and to menuBaar
 		menuFile.getItems().addAll(miSave, miClose);
 		menuHelp.getItems().addAll(miAbout);
-		
-		// Add menus to menuBar
 		menuBar.getMenus().addAll(menuFile, menuHelp);
 		
 		//Defining text fields
@@ -114,7 +107,7 @@ public class GUI extends Application{
 		endPoint.setPromptText("Enter end location in the form of (x,y)");
 		GridPane.setConstraints(endPoint, 2, 6);
 		
-		//Defining the start sim button
+		//Defining the start simulation button
 		Button start = new Button("Start Simulation");
 		start.setStyle("-fx-font: 20 Comic Sans; -fx-base: #6b6a6b;"); //change button color
 		GridPane.setConstraints(start, 3, 0);
@@ -139,10 +132,12 @@ public class GUI extends Application{
 		    }
 		});
 		
-		//Set action for start simulation button
-		/**@author Julian Pryde
-		 * */
 		start.setOnAction(new EventHandler<ActionEvent>() {
+			/* @author Julian Pryde
+			 * Set action for start simulation button
+			 * (non-Javadoc)
+			 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+			 */
 			@Override
 			public void handle(ActionEvent e){
 				
@@ -160,10 +155,12 @@ public class GUI extends Application{
 						Double.parseDouble(moveError.getText()));
 			}
 		});
-			
 		}
 		
 		//invoke GUI
+		/**
+		 * 
+		 */
 		public void showGUI(){
 			launch();
 		}
