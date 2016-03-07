@@ -215,7 +215,7 @@ public class GUI extends Application{
 					Label aboutLabel = new Label();
 					aboutLabel.setWrapText(true);
 					aboutLabel.setTextAlignment(TextAlignment.CENTER);
-					aboutLabel.setFont(Font.font("Comic Sans MS", 20));
+					aboutLabel.setFont(Font.font("Comic Sans MS", 22));
 					aboutLabel.setText(aboutText);
 					
 					// Add the label to a StackPane
