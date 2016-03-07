@@ -36,13 +36,11 @@ import java.lang.Double;
 
 /** The GUI
  * @author Savanh
- *
  */
 public class GUI extends Application{
-	//pane
-		private BorderPane MCLPane; 
-		GridPane grid = new GridPane();
-		// Menu stuff
+	
+		private BorderPane MCLPane; 						//border pane
+		GridPane grid = new GridPane();						//gridpane
 		private MenuBar menuBar;							// MenuBar
 		private Menu menuFile, menuHelp;					// Menus
 		private MenuItem miSave, miClose;					// save/close
@@ -53,8 +51,7 @@ public class GUI extends Application{
 		 * this is a constructor
 		 */
 		public GUI(){
-		//make pane 
-		MCLPane = new BorderPane();
+		MCLPane = new BorderPane();							//make pane
 		Pane buttonPane = new Pane();
 		//create menu items
 		miSave = new MenuItem("Save");
@@ -118,8 +115,13 @@ public class GUI extends Application{
 		GridPane.setConstraints(clear, 3, 1);
 		//add everything to grid
 		grid.getChildren().addAll(clear, start, endPoint, startPoint, moveError, rangeText, refPoints, senseError, waypoints);
-		//Setting an action for the Clear button
+		
 		clear.setOnAction(new EventHandler<ActionEvent>() {
+		/* @author Savanh Lu
+		 * (non-Javadoc)
+		 * Setting an action for the Clear button
+		 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+		 */
 		@Override
 		    public void handle(ActionEvent e) {
 		        rangeText.clear();
@@ -158,8 +160,7 @@ public class GUI extends Application{
 		}
 		
 		//invoke GUI
-		/**
-		 * 
+		/** @author Savanh Lu
 		 */
 		public void showGUI(){
 			launch();
@@ -171,11 +172,12 @@ public class GUI extends Application{
 			this.moveString = moveString;
 		}
 		/**@author Savanh Lu*/
+		/* (non-Javadoc)
+		 * @see javafx.application.Application#start(javafx.stage.Stage)
+		 */
 		@Override
 		public void start(Stage stage) throws Exception {
-			
-			//Event Handlers
-			miAbout.setOnAction(e -> showAbout());
+			miAbout.setOnAction(e -> showAbout());			//Event Handlers
 			miClose.setOnAction(e -> Platform.exit());
 			
 			/* PUT EVERYTHING TOGETHER */
@@ -201,9 +203,10 @@ public class GUI extends Application{
 			
 		}
 		/** Shows information about the program in it's own window 
-		 * @author Savanh Lu*/
+		 * @author Savanh Lu
+		 */
 		private void showAbout(){
-			//text i want
+			//customize text
 			final String aboutText ="This program was designed by Miralda Rodney,"
 					+ " Jadeira Lu, Julian Pryde, and Stephen Kristin in collaboration with"
 					+ " Dr.Garfield.";
