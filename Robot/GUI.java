@@ -1,4 +1,4 @@
-package src.Robot;
+package Robot;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,7 +40,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.lang.Integer;
 import java.lang.Double;
-
+/**@author Savanh Lu
+ *  */
 //GUI
 public class GUI extends Application{
 	//pane
@@ -57,11 +58,9 @@ public class GUI extends Application{
 		//make pane 
 		MCLPane = new BorderPane();
 		Pane buttonPane = new Pane();
-		
 		//create menu items
 		miSave = new MenuItem("Save");
 		miClose = new MenuItem("Close");
-		
 		//miStart = new MenuItem ("Start Simulation");
 		miAbout = new MenuItem("About");
 		
@@ -79,41 +78,37 @@ public class GUI extends Application{
 		// Add menus to menuBar
 		menuBar.getMenus().addAll(menuFile, menuHelp);
 		
-		//Defining the text field
+		//Defining text fields
 		final TextField rangeText = new TextField();
 		rangeText.setPromptText("Enter a range");
 		rangeText.setPrefColumnCount(20);
 		rangeText.getText();
 		GridPane.setConstraints(rangeText, 2, 0);
-		
-		//Defining  text field
+	
 		final TextField refPoints = new TextField();
 		refPoints.setPromptText("Enter a number of reference points");
 		GridPane.setConstraints(refPoints, 2, 1);
 		
-		//Defining text field
 		final TextField senseError = new TextField();
 		senseError.setPrefColumnCount(25);
 		senseError.setPromptText("Enter sensor error percentage");
 		GridPane.setConstraints(senseError, 2, 2);
-		//Defining text field
+		
 		final TextField waypoints = new TextField();
 		waypoints.setPrefColumnCount(25);
 		waypoints.setPromptText("Enter amount of waypoints");
 		GridPane.setConstraints(waypoints, 2, 3);
-		//Defining text field
+		
 		final TextField moveError = new TextField();
 		moveError.setPrefColumnCount(25);
 		moveError.setPromptText("Enter movement error percentage");
 		GridPane.setConstraints(moveError, 2, 4);
 		
-		//Defining text field
 		final TextField startPoint = new TextField();
 		startPoint.setPrefColumnCount(25);
 		startPoint.setPromptText("Enter starting location in the form of (x,y)");
 		GridPane.setConstraints(startPoint, 2, 5);
 		
-		//Defining text field
 		final TextField endPoint = new TextField();
 		endPoint.setPrefColumnCount(25);
 		endPoint.setPromptText("Enter end location in the form of (x,y)");
@@ -128,6 +123,7 @@ public class GUI extends Application{
 		Button clear = new Button("Clear");
 		clear.setStyle("-fx-font: 20 Comic Sans; -fx-base:#ebebeb;"); //change button color
 		GridPane.setConstraints(clear, 3, 1);
+		//add everything to grid
 		grid.getChildren().addAll(clear, start, endPoint, startPoint, moveError, rangeText, refPoints, senseError, waypoints);
 		//Setting an action for the Clear button
 		clear.setOnAction(new EventHandler<ActionEvent>() {
@@ -144,6 +140,8 @@ public class GUI extends Application{
 		});
 		
 		//Set action for start simulation button
+		/**@author Julian Pryde
+		 * */
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e){
@@ -161,7 +159,6 @@ public class GUI extends Application{
 						Double.parseDouble(rangeText.getText()), Double.parseDouble(senseError.getText()),
 						Double.parseDouble(moveError.getText()));
 			}
-			
 		});
 			
 		}
@@ -172,10 +169,11 @@ public class GUI extends Application{
 		}
 		
 		//set moveString
+		/**@author Julian Pryde*/
 		public void setMoveString(String moveString){
 			this.moveString = moveString;
 		}
-		
+		/**@author Savanh Lu*/
 		@Override
 		public void start(Stage stage) throws Exception {
 			
@@ -205,14 +203,15 @@ public class GUI extends Application{
 			grid.setHgap(5);
 			
 		}
-		/** Shows information about the program in it's own window */
+		/** Shows information about the program in it's own window 
+		 * @author Savanh Lu*/
 		private void showAbout(){
 			//text i want
 			final String aboutText ="This program was designed by Miralda Rodney,"
 					+ " Jadeira Lu, Julian Pryde, and Stephen Kristin in collaboration with"
 					+ " Dr.Garfield.";
 			
-			// Create the text label
+					// Create the text label
 					Label aboutLabel = new Label();
 					aboutLabel.setWrapText(true);
 					aboutLabel.setTextAlignment(TextAlignment.CENTER);
