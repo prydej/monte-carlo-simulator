@@ -2,7 +2,6 @@ package Robot;
 
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
