@@ -124,8 +124,6 @@ public class Sensor {
 			}
 		}
 	}
-	
-
 	/**
 	 * distanceBetweenPoints method will get
 	 * the points from a file and measure the 
