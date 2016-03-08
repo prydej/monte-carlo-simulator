@@ -1,36 +1,82 @@
+
 package Robot;
 
 import java.util.*;
 import java.lang.*;
-import java.io.*;
-import Robot.Map;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.*;
+
+/**
+ * @author Miralda Rodney
+ * 
+ * @version 1.0
+ * 
+ * 
+ * In this Sensor Class, the 
+ * sensor will determine whether or not 
+ * there is a point within its range that
+ * is a reference point. The points are saved
+ * formatted in a file.
+ *
+ */
 
 @SuppressWarnings("unused")
 
 public class Sensor {
 
 	public Sensor(){
+
 	}
 
 	public void finalize() throws Throwable{
 	}
 
-	public void detectPoints(double rangeOfSensor, double robotX, double robotY ){
-
+	/**
+	 * Description of detectPoints method which uses
+	 * the map class' reference point array. 
+	 * 
+	 * @param rangeOfSensor - user defined sensor range 
+	 * @param robotX - the robot's x location at each movement
+	 * @param robotY - the robot's y location at each movement
+	 * @param sensorError 
+	 * @return void
+	 * 
+	 * Description of detectPoints method which takes in three 
+	 * parameters and does not return any values.
+	 **/
+	public void detectPoints(double rangeOfSensor, double robotX, double robotY, int sensorError){
+		
+		//loop counters
 		int i = 0;
 
 		int j = 0;
 
+		//using map class object
 		int[][] refPointLoc = Map.refPoints;
 
+		//defining the sensor range based on range of sensor
+		//and the robots' current location
 		double rangeSensorX = rangeOfSensor + robotX;
 
 		double rangeSensorY = rangeOfSensor + robotY;
 
+		//created variables to check whether
+		//or not a point has actually been detected
 		int pointDetectedX = -1;
 
 		int pointDetectedY = -1;
+		
+		//variables to hold the estimated locations
+		//of the reference points and the robot
+		double estimatedXLoc = 0.0;
+		
+		double estimatedYLoc = 0.0;
 
+		//loop to go through array of reference points 
+		//and determine if any are within the sensors' range
 		for(i = 0; i < refPointLoc.length; i++){
 
 			for(j = 0; j < refPointLoc[i].length; j++){
@@ -47,8 +93,14 @@ public class Sensor {
 					}
 				}
 
+				//when the value of point detected changes, then the values
+				//are saved to a file with the error accounted for
 				if(pointDetectedX != -1 && pointDetectedY != -1){
 
+					estimatedXLoc = pointDetectedX*(sensorError/100);
+					
+					estimatedYLoc = pointDetectedY*(sensorError/100);
+					
 					File saveDetectedPoints = new File("DetectedPoints.txt");
 
 					try{
@@ -56,7 +108,7 @@ public class Sensor {
 
 						BufferedWriter bWSavePoints = new BufferedWriter(new FileWriter(saveDetectedPoints, true));
 
-						bWSavePoints.write("" + pointDetectedX + " " + pointDetectedY + "\n");
+						bWSavePoints.write("" + estimatedXLoc + " " + estimatedYLoc + "\n");
 						bWSavePoints.newLine();
 
 						//System.out.println(pointDetectedX + " " + pointDetectedY);
@@ -66,74 +118,30 @@ public class Sensor {
 					catch (IOException iOEx1){
 
 						//error message and scene and pane to pop up
+						//printing stack trace for demo 1
+						iOEx1.printStackTrace();
 					}
 				}
 			}
 		}
 	}
 	
-	public void pointsWithError(int sensorError){
-		
-		double xLoc = 0.0;
-		
-		double yLoc = 0.0;
-		
-		File getPoints = new File("DetectedPoints.txt");
-		
-		File savePointsError = new File("PointsWithError.txt");
-		
-		try{
-			
-			savePointsError.createNewFile();
-			
-			BufferedWriter bWPointsError = new BufferedWriter(new FileWriter(savePointsError, true));
-			
-			Scanner readDetectedPoints = new Scanner(getPoints);
-			
-			while(readDetectedPoints.hasNext()){
-				
-				xLoc = readDetectedPoints.nextInt()/(sensorError*100);
-				
-				yLoc = readDetectedPoints.nextInt()/(sensorError*100);
-				
-				bWPointsError.write("" + xLoc + " " + yLoc);
-				bWPointsError.newLine();
-			}
-			bWPointsError.close();
-			readDetectedPoints.close();
-			
-		}
-		catch(IOException iOEx2){
-			
-			//error message and scene and pane to pop up
-		}	
-	}
-	
+
+	/**
+	 * distanceBetweenPoints method will get
+	 * the points from a file and measure the 
+	 * distance between two at a time to estimate robot's 
+	 * location
+	 */
 	public void distanceBetweenPoints(){
 		
-		int point1;
+		//this method will read the detectedPoints file to figure out the
+		//distance between every two point, so 1 and 2, 2 and 3, etc.
 		
-		int point2;
 		
-		File getErrorPoints = new File("PointsWithError.txt");
+		//to hold the robot's estimated x and y locations
+		double robotsXLocFromPoints = 0.0;
 		
-		File difBetweenPoints = new File("DistanceBetweenPoints");
-		
-		try{
-			
-			difBetweenPoints.createNewFile();
-			
-			BufferedWriter bWDistance = new BufferedWriter(new FileWriter(difBetweenPoints, true));
-			
-			Scanner readErrorFile = new Scanner(getErrorPoints);
-			
-			bWDistance.close();
-
-			readErrorFile.close();
-		}
-		catch(IOException iOEx3){
-		
-			//error message with scene and pane to pop up
-		}
+		double robotsYLocFromPoints = 0.0;
 	}
 }

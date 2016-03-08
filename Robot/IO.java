@@ -1,3 +1,4 @@
+
 package Robot;
 
 
@@ -8,7 +9,7 @@ package Robot;
  */
 public class IO {
 
-	private String strToSave;
+	//private String strToSave;
 
 	public IO(){
 
@@ -23,10 +24,9 @@ public class IO {
 	 * @param String
 	 * @param String2
 	 */
-	public String log(String filename, String file){
+	//public String log(String filename, String file){
 
-		String outputString;
-	
-	}
+		//String outputString;
+	//}
 
 }

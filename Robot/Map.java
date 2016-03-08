@@ -1,3 +1,4 @@
+
 package Robot;
 import java.util.Random;
 
@@ -11,7 +12,9 @@ import java.util.Random;
  * 
  */
 
+
 public class Map{
+	
 	// seed random number generation
 	Random gen = new Random();
 
@@ -21,13 +24,7 @@ public class Map{
 	// exception handling 
 	public void finalize() throws Throwable {}
 
-	/**
-	 * createPoints(int) takes the number of points the user wants from the GUI and gives the points x and y values 
-	 * 
-	 * @param NumberRefPoints is the number of points to be created from the user input on the GUI
-	 * @return void
-	 * 
-	 */
+	// take the number of points the user wants from the GUI and give the points x and y values 
 	public void createPoints(int NumberRefPoints){
 		// variables for loop iteration
 		int i, j;
@@ -40,5 +37,6 @@ public class Map{
 		}
 	}
 } 
-//end of map class
-
+/**
+* end of map class
+*/
