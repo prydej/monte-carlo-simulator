@@ -41,8 +41,7 @@ public class Sensor {
 	 * @param rangeOfSensor - user defined sensor range 
 	 * @param robotX - the robot's x location at each movement
 	 * @param robotY - the robot's y location at each movement
-	 * @param sensorError 
-	 * @return void
+	 * @param sensorError - user defined error in sensor
 	 * 
 	 * Description of detectPoints method which takes in three 
 	 * parameters and does not return any values.
