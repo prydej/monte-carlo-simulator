@@ -43,6 +43,7 @@ public class Robot {
 	 * @param map: class with reference points
 	 * @param start: starting position x and y
 	 * @param end: ending position x and y
+	 * @param range: user defined sensor range
 	 * @return double array of positions betwen waypoints after robot hits a waypoint
 	 */
 	public double[][] move(GUI gui, Map map, int[] start, int[] end, double range){
@@ -104,9 +105,9 @@ public class Robot {
 	
 	/**
 	 * 
-	 * @param position 
-	 * @param points
-	 * @return
+	 * @param position - position description
+	 * @param points - points description
+
 	 */
 	public double[] calculate(double[] position, int[][] points){
 
