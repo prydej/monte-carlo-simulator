@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-package Robot;
+
 import java.util.Random;
 import java.util.Arrays;
 
@@ -43,10 +43,9 @@ public class Robot {
 	 * @param map: class with reference points
 	 * @param start: starting position x and y
 	 * @param end: ending position x and y
-	 * @param range: user defined sensor range
 	 * @return double array of positions betwen waypoints after robot hits a waypoint
 	 */
-	public double[][] move(GUI gui, Map map, int[] start, int[] end, double range){
+	public double[][] move(GUI gui, Map map, int[] start, int[] end, double range, double sensorError){
 		
 		waypoints[0][0] = (double) start[0];
 		waypoints[0][1] = (double) start[1];
@@ -89,7 +88,7 @@ public class Robot {
 			}
 
 			//call sensor.sense()
-			sensor.detectPoints(range, positionWError[chipmunk][0], positionWError[chipmunk][1]);
+			sensor.detectPoints(range, positionWError[0], positionWError[1], sensorError);
 
 			//call this.calculate()
 			position[chipmunk] = this.calculate(positionWError, Map.refPoints);
@@ -97,7 +96,7 @@ public class Robot {
 			//send info to GUI
 			outputString = "Ideal Positions: " + Arrays.toString(position[chipmunk]) + 
 					"\nPositions with Error " + Arrays.toString(positionWError);
-			gui.setMoveString(outputString);		
+			IO.setMoveString(outputString);		
 			
 		}
 		return position;
@@ -105,9 +104,9 @@ public class Robot {
 	
 	/**
 	 * 
-	 * @param position - position description
-	 * @param points - points description
-	 * @return double array
+	 * @param position 
+	 * @param points
+	 * @return
 	 */
 	public double[] calculate(double[] position, int[][] points){
 
