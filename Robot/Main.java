@@ -42,7 +42,7 @@ public class Main extends Application{
 		Map map = new Map();
 		
 		int squirrel;
-		for (squirrel = 0; squirrel < robot.getNumWaypoints(); squirrel++){
+		for (squirrel = 0; squirrel < 2; squirrel++){
 			robot.move(gui, map, waypoint1, waypoint2, range, sensorError);
 		}
 		
