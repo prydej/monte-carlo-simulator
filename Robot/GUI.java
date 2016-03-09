@@ -149,8 +149,12 @@ public class GUI extends Application{
 				int[] startPos = {startx, starty};
 				int[] endPos = {endx, endy};
 
-				Main.simulate(Integer.parseInt(refPoints.getText()), startPos, endPos, 
-						Double.parseDouble(rangeText.getText()), Double.parseDouble(senseError.getText()),
+				Main.simulate(
+						Integer.parseInt(refPoints.getText()), 
+						startPos, 
+						endPos, 
+						Double.parseDouble(rangeText.getText()), 
+						Double.parseDouble(senseError.getText()),
 						Double.parseDouble(moveError.getText()));
 			}
 		});
