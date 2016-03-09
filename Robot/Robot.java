@@ -107,7 +107,7 @@ public class Robot {
 	 * 
 	 * @param position - position description
 	 * @param points - points description
-
+	 * @return double array
 	 */
 	public double[] calculate(double[] position, int[][] points){
 
