@@ -166,7 +166,10 @@ public class GUI extends Application{
 		}
 		
 		//set moveString
-		/**@author Julian Pryde*/
+		/**@author Julian Pryde
+		 * 
+		 * @param moveString - a string variable
+		 * */
 		public void setMoveString(String moveString){
 			this.moveString = moveString;
 		}
