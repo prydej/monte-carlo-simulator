@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * @author Stephen Kristin
  * @version 1.1
- * @last modified 3/7/2016
+ * modified 3/7/2016
  * 
  * This class uses random number generation to give x and y values for the reference points
  * The reference points are simulated by the 2 dimensional array refPoints[][]
