@@ -1,6 +1,3 @@
-
-package Robot;
-
 import java.util.*;
 import java.lang.*;
 import java.io.BufferedWriter;
@@ -46,7 +43,7 @@ public class Sensor {
 	 * Description of detectPoints method which takes in three 
 	 * parameters and does not return any values.
 	 **/
-	public void detectPoints(double rangeOfSensor, double robotX, double robotY, int sensorError){
+	public void detectPoints(double rangeOfSensor, double robotX, double robotY, double sensorError){
 		
 		//loop counters
 		int i = 0;
